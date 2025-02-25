@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('routes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->integer('difficulty');
-            $table->string('type');
-            $table->string('zone');
-            $table->string('imageMap');
-            $table->string('coordinateStart');
-            $table->string('coordinateEnd');
+            $table->string('type')->nullable();
+            $table->string('zone')->nullable();
+            $table->string('imageMap')->nullable();
+            $table->string('coordinateStart')->nullable();
+            $table->string('coordinateEnd')->nullable();
             $table->timestamps();
         });
     }
