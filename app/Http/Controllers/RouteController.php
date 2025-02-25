@@ -2,38 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Route;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use App\Models\Route;
 
 class RouteController extends Controller
 {
-
     public function index(): View
     {
         $viewData = [];
-        $viewData["title"] = "Routes - Medallo-Bike";
-        $viewData["subtitle"] =  "Routes List";
-        $viewData["routes"] = Route::all();
-        return view('route.index')->with("viewData", $viewData);
+        $viewData['title'] = 'Routes - Medallo-Bike';
+        $viewData['subtitle'] = 'Routes List';
+        $viewData['routes'] = Route::all();
+
+        return view('route.index')->with('viewData', $viewData);
     }
 
-    public function show(string $id) : View
+    public function show(string $id): View
     {
         $viewData = [];
         $route = Route::findOrFail($id);
-        $viewData["title"] = $route["name"]." - Medallo-Bike";
-        $viewData["subtitle"] =  $route["name"]." - Route Details";
-        $viewData["route"] = $route;
-        return view('route.show')->with("viewData", $viewData);
+        $viewData['title'] = $route['name'].' - Medallo-Bike';
+        $viewData['subtitle'] = $route['name'].' - Route Details';
+        $viewData['route'] = $route;
+
+        return view('route.show')->with('viewData', $viewData);
     }
 
     public function create(): View
     {
         $viewData = [];
-        $viewData["title"] = "Create route";
+        $viewData['title'] = 'Create route';
 
-        return view('route.create')->with("viewData",$viewData);
+        return view('route.create')->with('viewData', $viewData);
     }
 
     public function save(Request $request)
@@ -50,7 +51,7 @@ class RouteController extends Controller
         ]);
 
         $route = Route::create($request->only([
-            'name', 'description', 'difficulty', 'type', 'zone', 'imageMap', 'coordinateStart', 'coordinateEnd'
+            'name', 'description', 'difficulty', 'type', 'zone', 'imageMap', 'coordinateStart', 'coordinateEnd',
         ]));
 
         return redirect()->route('route.success', ['id' => $route->id]);

@@ -10,7 +10,7 @@ class Route extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id', 'name', 'description', 'difficulty', 'type', 'zone', 'imageMap', 'coordinateStart', 'coordinateEnd'
+        'id', 'name', 'description', 'difficulty', 'type', 'zone', 'imageMap', 'coordinateStart', 'coordinateEnd',
     ];
 
     public function getId(): int
